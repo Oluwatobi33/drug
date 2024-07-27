@@ -10,8 +10,8 @@ exit();
 }
 $id=$_GET[prescription_id];
 $sql="delete from prescription where prescription_id='$id'";
-mysql_query($sql);
-//$rows=mysql_fetch_assoc($result);
+mysqli_query($conn,$sql);
+//$rows=mysqli_fetch_assoc($result);
 header("location:prescription.php");
 ?>
 

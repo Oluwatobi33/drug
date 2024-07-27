@@ -59,12 +59,12 @@ exit();
         // connect to the database
         include_once('connect_db.php');
        // get results from database
-       $result = mysql_query("SELECT * FROM prescription")or die(mysql_error());
+       $result = mysqli_query($conn, "SELECT * FROM prescription")or die(mysqli_error());
 		// display data in table
         echo "<table border='1' cellpadding='5'>";
         echo "<tr> <th>Prescription_id</th><th>Drug_name</th> <th>Strength</th><th>Dose</th><th>Quantity</th></tr>";
         // loop through results of database query, displaying them in the table
-        while($row = mysql_fetch_array( $result )) {
+        while($row = mysqli_fetch_array( $result )) {
                 // echo out the contents of each row into a table
                 echo "<tr>";
 				 echo '<td>' . $row['prescription_id'] . '</td>';

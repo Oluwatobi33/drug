@@ -16,7 +16,7 @@ $total=$_POST['total_ammount'];
 
 
 
-$sql=mysql_query("INSERT INTO payment_details(invoice_no,customer_name,payment_type,total_ammount)
+$sql=mysqli_query($conn, "INSERT INTO payment_details(invoice_no,customer_name,payment_type,total_ammount)
 VALUES('$invoice_no','$cname','$ptype','$total')");
 if($sql>0) {header("location:http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/payment.php");
 }else{
@@ -77,14 +77,14 @@ $message1="<font color=red>Registration Failed, Try again</font>";
 
         // get results from database
 		
-        $result = mysql_query("SELECT * FROM payment_details") 
-                or die(mysql_error());
+        $result = mysqli_query($conn, "SELECT * FROM payment_details") 
+                or die(mysqli_error());
 		// display data in table
         echo "<table border='1' cellpadding='3'>";
          echo "<tr><th>payment_id</th><th>invoice_no</th><th>customer_name</th><th>payment_type</th><th>total_ammount</th><th>Delete</th></tr>";
 
         // loop through results of database query, displaying them in the table
-        while($row = mysql_fetch_array( $result )) {
+        while($row = mysqli_fetch_array( $result )) {
                 
                 // echo out the contents of each row into a table
                 echo "<tr>";

@@ -10,8 +10,8 @@ exit();
 }
 $id=$_GET[manager_id];
 $sql="delete from manager where manager_id='$id'";
-mysql_query($sql);
-//$rows=mysql_fetch_assoc($result);
+mysqli_query($conn,$sql);
+//$rows=mysqli_fetch_assoc($result);
 header("location:admin_manager.php");
 ?>
 

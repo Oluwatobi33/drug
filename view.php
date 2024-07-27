@@ -62,12 +62,12 @@ exit();
         // connect to the database
         include_once('connect_db.php');
        // get results from database
-       $result = mysql_query("SELECT * FROM pharmacist")or die(mysql_error());
+       $result = mysqli_query($conn, "SELECT * FROM pharmacist")or die(mysqli_error());
 		// display data in table
         echo "<table border='1' cellpadding='5'>";
         echo "<tr><th>Firstname</th> <th>Lastname </th> <th>Staff ID</th><th>Phone</th><th>Email</th><th>Username </th></tr>";
         // loop through results of database query, displaying them in the table
-        while($row = mysql_fetch_array( $result )) {
+        while($row = mysqli_fetch_array( $result )) {
                 // echo out the contents of each row into a table
                 echo "<tr>";
                 echo '<td>' . $row['first_name'] . '</td>';
@@ -95,8 +95,8 @@ exit();
 
         // get results from database
 		
-        $result = mysql_query("SELECT * FROM cashier") 
-                or die(mysql_error());
+        $result = mysqli_query($conn, "SELECT * FROM cashier") 
+                or die(mysqli_error());
 				
 					    
         // display data in table
@@ -105,7 +105,7 @@ exit();
          echo "<tr><th>Firstname</th> <th>Lastname </th> <th>Staff ID</th><th>Phone</th><th>Email</th><th>Username </th></tr>";
 
         // loop through results of database query, displaying them in the table
-        while($row = mysql_fetch_array( $result )) {
+        while($row = mysqli_fetch_array( $result )) {
                 
                 // echo out the contents of each row into a table
                 echo "<tr>";
@@ -134,8 +134,8 @@ exit();
 
         // get results from database
 		
-        $result = mysql_query("SELECT * FROM manager") 
-                or die(mysql_error());
+        $result = mysqli_query($conn, "SELECT * FROM manager") 
+                or die(mysqli_error());
 				
 					    
         // display data in table
@@ -144,7 +144,7 @@ exit();
         echo "<tr><th>Firstname</th> <th>Lastname </th> <th>Staff ID</th><th>Phone</th><th>Email</th><th>Username </th></tr>";
 
         // loop through results of database query, displaying them in the table
-        while($row = mysql_fetch_array( $result )) {
+        while($row = mysqli_fetch_array( $result )) {
                 
                 // echo out the contents of each row into a table
                 echo "<tr>";

@@ -10,8 +10,8 @@ exit();
 }
 $id=$_GET[invoice_no];
 $sql="delete from invoice where invoice_no='$id'";
-mysql_query($sql);
-//$rows=mysql_fetch_assoc($result);
+mysqli_query($conn,$sql);
+//$rows=mysqli_fetch_assoc($result);
 header("location:invoice.php");
 ?>
 

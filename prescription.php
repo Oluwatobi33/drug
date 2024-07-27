@@ -17,7 +17,7 @@ $qua=$_POST['quantity'];
 
 
 
-$sql=mysql_query("INSERT INTO prescription(drug_id,drug_name,strength,dose,quantity)
+$sql=mysqli_query($conn, "INSERT INTO prescription(drug_id,drug_name,strength,dose,quantity)
 VALUES('$did','$dname','$set','$dose','$qua')");
 if($sql>0) {header("location:http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/prescription.php");
 }else{
@@ -78,14 +78,14 @@ $message1="<font color=red>Registration Failed, Try again</font>";
 
         // get results from database
 		
-        $result = mysql_query("SELECT * FROM prescription") 
-                or die(mysql_error());
+        $result = mysqli_query($conn, "SELECT * FROM prescription") 
+                or die(mysqli_error());
 		// display data in table
         echo "<table border='1' cellpadding='3'>";
          echo "<tr><th>ID</th><th>drug_id</th><th>drug_name</th><th>strength</th><th>dose</th><th>quantity</th><th>Delete</th></tr>";
 
         // loop through results of database query, displaying them in the table
-        while($row = mysql_fetch_array( $result )) {
+        while($row = mysqli_fetch_array( $result )) {
                 
                 // echo out the contents of each row into a table
                 echo "<tr>";

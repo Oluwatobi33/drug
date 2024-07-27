@@ -10,8 +10,8 @@ exit();
 }
 $id=$_GET[payment_id];
 $sql="delete from payment_details where payment_id='$id'";
-mysql_query($sql);
-//$rows=mysql_fetch_assoc($result);
+mysqli_query($conn,$sql);
+//$rows=mysqli_fetch_assoc($result);
 header("location:payment.php");
 ?>
 

@@ -10,8 +10,8 @@ exit();
 }
 $id=$_GET[stock_id];
 $sql="delete from stock where stock_id='$id'";
-mysql_query($sql);
-//$rows=mysql_fetch_assoc($result);
+mysqli_query($conn,$sql);
+//$rows=mysqli_fetch_assoc($result);
 header("location:stock.php");
 ?>
 

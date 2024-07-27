@@ -16,7 +16,7 @@ $quantity=$_POST['quantity'];
 $cost=$_POST['cost'];
 $tax=null;
 
-$sql=mysql_query("INSERT INTO invoice(customer_name,drug_id,drug_name,quantity,cost,tax)
+$sql=mysqli_query($conn, "INSERT INTO invoice(customer_name,drug_id,drug_name,quantity,cost,tax)
 VALUES('$cname','$drug_id','$drug_name','$quantity','$cost','$tax')");
 if($sql>0) {header("location:http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/invoice.php");
 }else{
@@ -79,14 +79,14 @@ $message1="<font color=red>Registration Failed, Try again</font>";
 
         // get results from database
 		
-        $result = mysql_query("SELECT * FROM invoice") 
-                or die(mysql_error());
+        $result = mysqli_query($conn, "SELECT * FROM invoice") 
+                or die(mysqli_error());
 		// display data in table
         echo "<table border='1' cellpadding='3'>";
          echo "<tr><th>invoice_no</th><th>drug_id</th><th>drug_name</th><th>quantity</th><th>cost</th><th>tax</th><th>Delete</th></tr>";
 
         // loop through results of database query, displaying them in the table
-        while($row = mysql_fetch_array( $result )) {
+        while($row = mysqli_fetch_array( $result )) {
                 
                 // echo out the contents of each row into a table
                 echo "<tr>";
@@ -108,15 +108,15 @@ $db_host="localhost";
 $db_name="pms";
 $db_user="root";
 $db_pass="";
-$con = mysql_connect("$db_host","$db_user","$db_pass") or die ("could not connect");
-mysql_select_db('pms') or die(mysql_error());
-$p0=mysql_query("call total_revenue(@out);");
-$rs=mysql_query('SELECT @out');
-	while ($arr=mysql_fetch_row($rs))
+$con = mysqli_connect("$db_host","$db_user","$db_pass") or die ("could not connect");
+mysqli_select_db('pms') or die(mysqli_error());
+$p0=mysqli_query($conn, "call total_revenue(@out);");
+$rs=mysqli_query('SELECT @out');
+	while ($arr=mysqli_fetch_row($rs))
 	{
 		echo 'Total revenue collected=Rs. '.$arr[0];
 	}
-	mysql_close($dbh);
+	mysqli_close($dbh);
 	?>
 
 

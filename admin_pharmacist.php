@@ -25,7 +25,7 @@ $user=$_POST['user'];
 $sql="UPDATE `pharmacist` SET `first_name`= '$fname',`last_name`= '$lname',`staff_id`= '$sid',`postal_address`='$postal',
 `phone`='$phone',`email`='$email',`username`='$username',`password`='$pas' WHERE `username`='$username'";
 
-$res=mysql_query($sql);
+$res=mysqli_query($conn,$sql);
 if($res) {header("location:http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/admin_pharmacist.php");
 
 }else{
@@ -40,12 +40,12 @@ $phone=$_POST['phone'];
 $email=$_POST['email'];
 $user=$_POST['username'];
 $pas=$_POST['password'];
-$sql1=mysql_query("SELECT * FROM pharmacist WHERE username='$user'")or die(mysql_error());
- $result=mysql_fetch_array($sql1);
+$sql1=mysqli_query($conn, "SELECT * FROM pharmacist WHERE username='$user'")or die(mysqli_error());
+ $result=mysqli_fetch_array($sql1);
 if($result>0){
 $message="<font color=blue>sorry the username entered already exists</font>";
  }else{
-$sql=mysql_query("INSERT INTO pharmacist(first_name,last_name,staff_id,postal_address,phone,email,username,password,date)
+$sql=mysqli_query($conn, "INSERT INTO pharmacist(first_name,last_name,staff_id,postal_address,phone,email,username,password,date)
 VALUES('$fname','$lname','$sid','$postal','$phone','$email','$user','$pas',NOW())");
 if($sql>0) {header("location:http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/admin_pharmacist.php");
 }else{
@@ -157,12 +157,12 @@ return false;
         // connect to the database
         include_once('connect_db.php');
        // get results from database
-       $result = mysql_query("SELECT * FROM pharmacist")or die(mysql_error());
+       $result = mysqli_query($conn, "SELECT * FROM pharmacist")or die(mysqli_error());
 		// display data in table
         echo "<table border='1' cellpadding='5'align='center'>";
         echo "<tr> <th>ID</th><th>Firstname </th> <th>Lastname </th> <th>Username </th><th>Update </th><th>Delete</th></tr>";
         // loop through results of database query, displaying them in the table
-        while($row = mysql_fetch_array( $result )) {
+        while($row = mysqli_fetch_array( $result )) {
                 // echo out the contents of each row into a table
                 echo "<tr>";
                 echo '<td>' . $row['pharmacist_id'] . '</td>';
